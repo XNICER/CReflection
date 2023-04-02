@@ -7,8 +7,9 @@ class creflection
 {
 public:
     template<typename R, typename... Args>
-    int regist_func(std::string func_name, const std::function<R(Args...)>& func)
+    int regist_func(std::string func_name, R(*src_func)(Args...))
     {
+        // std::function func(src_func);
         using args_type = std::tuple<Args...>;
         if (funcs.find(func_name) != funcs.end())
         {
@@ -21,7 +22,7 @@ public:
                 return;
             }
             auto typed_args = std::any_cast<args_type>(args);
-            std::apply(func, typed_args);
+            std::apply(src_func, typed_args);
         };
         return 0;
     }

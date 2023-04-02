@@ -25,10 +25,11 @@ void print(std::string a, int b)
 int main()
 {
     creflection Ins;
-    Ins.regist_func("add_double", std::function<void(double, double)>(add));
-    Ins.regist_func("add_string", std::function<void(std::string, std::string, std::string)>(add_string));
-    Ins.regist_func("add", std::function<void(int, int)>(add));
-    Ins.regist_func("print", std::function<void(std::string, int)>(print));
+    Ins.regist_func("add", add);
+    // Ins.regist_func("add_double", std::function(add));
+    // Ins.regist_func("add_string", std::function<void(std::string, std::string, std::string)>(add_string));
+    // Ins.regist_func("print", std::function<void(std::string, int)>(print));
     Ins.reflection_call("add", 1, 2);
+    Ins.reflection_call("add", 1.1, 2);
     return 0;
 }
